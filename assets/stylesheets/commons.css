@@ -1,0 +1,73 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-center {
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-center {
+  justify-content: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.stats-box {
+  height: 100px;
+  width: 200px;
+  border: 1px solid black;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.software {
+  margin-bottom: 20px;
+}
+
+.col-1 {
+  flex: 1;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.match-row {
+  margin: 5px 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.won {
+  color: #1f77b4;
+}
+
+.draw {
+  color: #ff7f0e;
+}
+
+.lost {
+  color: #2ca02c;
+}
+
+footer {
+  margin: 30px 0;
+}

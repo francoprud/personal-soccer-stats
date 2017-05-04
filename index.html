@@ -3,9 +3,138 @@
   <head>
     <meta charset="utf-8">
     <title>InfoVis: TP Datos Personales</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+    <!-- JS files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="vendor/assets/javascripts/d3.min.js"></script>
+    <script src="vendor/assets/javascripts/c3.min.js"></script>
+    <script src="vendor/assets/javascripts/moment.min.js"></script>
+    <script src="assets/javascripts/data.js"></script>
+    <script src="assets/javascripts/main.js"></script>
+    <script src="assets/javascripts/matches.js"></script>
+    <script src="assets/javascripts/goals.js"></script>
+    <script src="assets/javascripts/pie_chart.js"></script>
+    <script src="assets/javascripts/timeseries_chart.js"></script>
+    <script src="assets/javascripts/stacked_chart.js"></script>
+    <script src="assets/javascripts/bar_chart.js"></script>
+    <script src="assets/javascripts/used_data_table.js"></script>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="vendor/assets/stylesheets/c3.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/commons.css">
+
+    <!-- Font files -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   </head>
   <body>
-    
+    <h1 class="center-text">Estadísticas de DALMA NEREA F.C.</h1>
+    <!-- Matches section -->
+    <h2 class="center-text">Estadística de los partidos</h2>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Partidos jugados</div>
+        <div id="js-matches-played" class="number"></div>
+      </div>
+    </div>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Partidos ganados</div>
+        <div id="js-won-matches" class="number"></div>
+      </div>
+      <div class="stats-box column column-center space-around">
+        <div class="title">Partidos empatados</div>
+        <div id="js-drawn-matches" class="number"></div>
+      </div>
+      <div class="stats-box column column-center space-around">
+        <div class="title">Partidos perdidos</div>
+        <div id="js-lost-matches" class="number"></div>
+      </div>
+    </div>
+    <div id="js-total-matches-pie-chart" class="pie-chart">
+    </div>
+    <div id="js-total-matches-timeseries-chart" class="timeseries-chart">
+    </div>
+    <!-- Goals section -->
+    <h2 class="center-text">Estadística de los goles</h2>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Goles totales</div>
+        <div id="js-goals-total" class="number"></div>
+      </div>
+    </div>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Goles a favor</div>
+        <div id="js-goals-for" class="number"></div>
+      </div>
+      <div class="stats-box column column-center space-around">
+        <div class="title">Goles en contra</div>
+        <div id="js-goals-against" class="number"></div>
+      </div>
+    </div>
+    <div id="js-total-goals-pie-chart" class="pie-chart">
+    </div>
+    <div id="js-total-goals-timeseries-chart" class="timeseries-chart">
+    </div>
+    <!-- Rivals section -->
+    <h2 class="center-text">Estadística de los equipos</h2>
+    <div id="js-matches-stacked-chart" class="timeseries-chart">
+    </div>
+    <!-- Other data -->
+    <h2 class="center-text">Datos puntuales del equipo</h2>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Mayor victoria</div>
+        <div class="number">16 - 2</div>
+        <div class="rival">vs. PANZUDA FC</div>
+      </div>
+      <div class="stats-box column column-center space-around">
+        <div class="title">Mayor derrota</div>
+        <div class="number">0 - 3</div>
+        <div class="rival">vs. VAFFANCULO FC</div>
+      </div>
+    </div>
+    <div class="row row-center center-text">
+      <div class="stats-box column column-center space-around">
+        <div class="title">Mayor racha de victorias</div>
+        <div class="number">8</div>
+      </div>
+      <div class="stats-box column column-center space-around">
+        <div class="title">Mayor racha de derrotas</div>
+        <div class="number">3</div>
+      </div>
+    </div>
+    <!-- Times data -->
+    <h2 class="center-text">Estadísticas de los horarios</h2>
+    <div id="js-times-bar-chart" class="timeseries-chart">
+    </div>
+    <!-- Data section -->
+    <h2 class="center-text">Datos utilizados</h2>
+    <div id="js-used-data" class="column">
+      <div class="row match-row-title center-text bold">
+        <div class="col-1">Fecha</div>
+        <div class="col-1">Condición</div>
+        <div class="col-1">Horario</div>
+        <div class="col-1">Cancha</div>
+        <div class="col-1">Rival</div>
+        <div class="col-1">Resultado</div>
+      </div>
+      <div id="js-match-row-clone" class="row match-row center-text hidden">
+        <div class="date col-1"></div>
+        <div class="condition col-1"></div>
+        <div class="time col-1"></div>
+        <div class="field col-1"></div>
+        <div class="rival col-1"></div>
+        <div class="result col-1"></div>
+      </div>
+    </div>
+    <!-- Footer section -->
+    <footer class="center-text column">
+      <div class="software">
+        Se utilizó d3.js y c3.js
+      </div>
+      <div class="info">
+        Franco Prudhomme - Legajo 54263 - Visualización de la información - ITBA - 2017
+      </div>
+    </footer>
   </body>
 </html>
